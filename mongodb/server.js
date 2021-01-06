@@ -1,10 +1,17 @@
 var http = require("http");
 var app = require("./app");
+var database = require("./database");
 
 app.set("port", 3000);
 
-var server = http.createServer(app);
+http.createServer(app).listen(app.get("port"), function () {
+    console.log("server is running.");
+    database.init(app);
+});
 
-server.listen(3000);
-
-module.exports = server;
+app.on("close", function () {
+    console.log("terminate server");
+    if (database.db) {
+        database.db.close();
+    }
+});

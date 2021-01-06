@@ -5,6 +5,27 @@ router.get("/", function (req, res, next) {
     res.render("login.html");
 });
 
+router.post("/", function (req, res, next) {
+    var database = req.app.get("database");
+    // var user_id = req.body.id;
+    // var user_pw = req.body.pw;
+    // var user_nickname = req.body.nickname;
+    if (database.db) {
+        var user = new database.UserModel({
+            user_id: "user_id",
+            user_pw: "user_pw",
+            user_nickname: "user_nickname",
+        });
+        user.save(function (err) {
+            if (err) {
+                callback(err, null);
+                return;
+            }
+            callback(null, user);
+        });
+    }
+});
+
 router.get("/main", function (req, res, next) {
     const id = req.query.id;
     const pw = req.query.pw;
