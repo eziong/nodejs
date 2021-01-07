@@ -22,15 +22,23 @@ router.post("/", function (req, res, next) {
                 res.render("login.html");
             } else {
                 console.log("saving data successfully");
-                res.render("main.html");
+                res.cookie("user", {
+                    id: user_id,
+                    nickname: user_nickname,
+                    pw: user_pw,
+                    isLoginned: true,
+                });
+                console.log("cookie setting is good");
+                res.redirect("/process/login");
             }
         });
     }
 });
 
 router.get("/main", function (req, res, next) {
-    const id = req.query.id;
-    const pw = req.query.pw;
+    const id = req.cookies.user.id;
+    const pw = req.cookies.user.pw;
+    console.log(id, pw);
     if (id === "eziong" && pw == "1234") {
         res.render("main.html");
         console.log(req.query);
