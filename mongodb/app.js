@@ -1,10 +1,14 @@
 var express = require("express");
+var bodyParser = require("body-parser");
 var usersRouter = require("./users");
 
 app = express();
 
 app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/users", usersRouter);
 

@@ -7,21 +7,23 @@ router.get("/", function (req, res, next) {
 
 router.post("/", function (req, res, next) {
     var database = req.app.get("database");
-    // var user_id = req.body.id;
-    // var user_pw = req.body.pw;
-    // var user_nickname = req.body.nickname;
+    var user_id = req.body.id;
+    var user_pw = req.body.pw;
+    var user_nickname = req.body.nickname;
     if (database.db) {
         var user = new database.UserModel({
-            user_id: "user_id",
-            user_pw: "user_pw",
-            user_nickname: "user_nickname",
+            user_id: user_id,
+            user_pw: user_pw,
+            user_nickname: user_nickname,
         });
         user.save(function (err) {
             if (err) {
-                callback(err, null);
-                return;
+                console.log("saving error");
+                res.render("login.html");
+            } else {
+                console.log("saving data successfully");
+                res.render("main.html");
             }
-            callback(null, user);
         });
     }
 });
