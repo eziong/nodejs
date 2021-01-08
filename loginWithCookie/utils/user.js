@@ -1,4 +1,4 @@
-var userInfo = async function (req, res, email, callback) {
+var userInfo = function (req, res, email, callback) {
     var database = req.app.get("database");
     database.UserModel.findOne({ u_email: email }, function (err, results) {
         callback(results);

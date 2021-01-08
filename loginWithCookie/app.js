@@ -5,7 +5,7 @@ var cookieParser = require("cookie-parser");
 var processRouter = require("./Routers/process");
 var mainRouter = require("./Routers/main");
 
-app = express();
+var app = express();
 
 app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
