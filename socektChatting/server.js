@@ -21,6 +21,15 @@ io.sockets.on("connection", function (socket) {
     );
     socket.remoteAddress = socket.request.connection._peername.address;
     socket.remotePort = socket.request.connection._peername.port;
+
+    socket.on("message", function (message) {
+        console.log("message 받음 -> " + JSON.stringify(message));
+
+        if (message.recepient == "ALL") {
+            console.log("모든 클라이언트들에게 메세지 전송함");
+            io.sockets.emit("message", message);
+        }
+    });
 });
 
 app.on("close", function () {
