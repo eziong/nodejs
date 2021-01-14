@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
 
 app.post("/register", (req, res) => {
     var user = new User(req.body);
+    console.log(user);
 
     user.save((err, docs) => {
         if (err) return res.json({ success: false, err });

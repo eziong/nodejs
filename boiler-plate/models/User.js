@@ -1,4 +1,6 @@
 var mongoose = require("mongoose");
+var bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 var userSchema = mongoose.Schema({
     name: {
@@ -29,6 +31,23 @@ var userSchema = mongoose.Schema({
     tokenExp: {
         type: Number,
     },
+});
+
+userSchema.pre("save", function (next) {
+    var user = this;
+    console.log(user, this);
+
+    // encrypt password
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+        console.log(err);
+        //Store hash in your password DB
+        if (err) return next(err);
+        bcrypt.hash(user.password, salt, (err, hash) => {
+            if (err) return next(err);
+            user.password = hash;
+            next();
+        });
+    });
 });
 
 module.exports = mongoose.model("User", userSchema);
