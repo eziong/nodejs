@@ -3,19 +3,17 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 
 var User = require("./models/User");
+var config = require("./config/key");
 
 var app = express();
 
 mongoose
-    .connect(
-        "mongodb+srv://eziong:1q2w3e4r@cluster0.axn0r.mongodb.net/<dbname>?retryWrites=true&w=majority",
-        {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true,
-            useFindAndModify: false,
-        }
-    )
+    .connect(config.mongoURI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+    })
     .then(() => console.log("MongoDB is connected"))
     .catch((err) => console.log(err));
 
