@@ -1,5 +1,4 @@
 var express = require("express");
-var bodyParser = require("body-parser");
 var app = express();
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
@@ -9,8 +8,6 @@ app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
 app.use("/static", express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 const rooms = {};
 
@@ -38,7 +35,7 @@ app.get("/:room", (req, res) => {
 server.listen(3000);
 
 io.on("connection", (socket) => {
-    socket.on("new-server", (room, name) => {
+    socket.on("new-user", (room, name) => {
         socket.join(room);
         rooms[room].users[socket.id] = name;
         socket.to(room).broadcast.emit("user-connected", name);
@@ -66,7 +63,7 @@ io.on("connection", (socket) => {
 
 function getUserRooms(socket) {
     return Object.entries(rooms).reduce((names, [name, room]) => {
-        if (room.users[socket.id] !== null) names.push(name);
+        if (room.users[socket.id] != null) names.push(name);
         return names;
     }, []);
 }
