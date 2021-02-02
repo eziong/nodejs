@@ -3,9 +3,24 @@ import axios from "axios";
 
 function App() {
     useEffect(() => {
-        axios.get("/api/hello").then((response) => console.log(response));
+        axios.get("/api/hello").then((response) => {
+            console.log(response);
+        });
     }, []);
-    return <div className="App">hello world</div>;
+
+    return (
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: "100vh",
+            }}
+        >
+            <h2>시작헤이지</h2>
+        </div>
+    );
 }
 
 export default App;

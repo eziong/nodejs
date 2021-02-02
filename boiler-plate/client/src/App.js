@@ -17,7 +17,7 @@ function App() {
                     <Route path="/register">
                         <RegisterPage />
                     </Route>
-                    <Route path="/landing" component={LandingPage} />
+                    <Route path="/" component={LandingPage} />
                 </Switch>
             </div>
         </Router>
