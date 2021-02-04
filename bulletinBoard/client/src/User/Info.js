@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import Login from "./Login";
 
 export default function ManiPage() {
-    return <div></div>;
+    return (
+        <div>
+            <Login />
+        </div>
+    );
 }

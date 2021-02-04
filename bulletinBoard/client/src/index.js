@@ -9,8 +9,8 @@ import Reducer from "./_reducer/index";
 
 const createStoreWithMiddleware = applyMiddleware(
     promiseMiddleware,
-    ReduxThunk(createStore)
-);
+    ReduxThunk
+)(createStore);
 
 ReactDOM.render(
     <Provider

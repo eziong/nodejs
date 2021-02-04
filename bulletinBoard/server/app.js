@@ -32,4 +32,9 @@ app.use(passport.session());
 
 app.use("/authenticate", authenticateRouter);
 
+app.get("/tesURI", (req, res) => {
+    console.log("test URI");
+    res.send("test");
+});
+
 module.exports = app;
