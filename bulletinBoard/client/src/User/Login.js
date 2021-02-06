@@ -32,14 +32,19 @@ export default function App(props) {
     };
     return (
         <div>
+            <h2>Login Page</h2>
             <form onSubmit={onSubmitHandler}>
-                <label>email</label>
-                <input type="email" value={email} onChange={onEmailHandler} />
-                <label>password</label>
+                <input
+                    type="email"
+                    value={email}
+                    onChange={onEmailHandler}
+                    placeholder="email"
+                />
                 <input
                     type="password"
                     value={password}
                     onChange={onPasswordHandler}
+                    placeholder="password"
                 />
                 <br />
                 <button>Login</button>

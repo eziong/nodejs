@@ -25,4 +25,21 @@ router.post("/login", (req, res) => {
     });
 });
 
+router.post("/register", (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const nickname = req.body.nickname;
+    console.log(req.body);
+    user = new User({
+        user_email: email,
+        user_pw: password,
+        user_nickname: nickname,
+    });
+    console.log(user);
+    user.save((err, docs) => {
+        if (err) return res.json({ success: false });
+        return res.json({ success: true });
+    });
+});
+
 module.exports = router;
