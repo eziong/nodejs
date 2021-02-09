@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Create from "./Create";
 import Read from "./Read";
-import Update from "./Update";
-import Delete from "./Delete";
 
 export default function App() {
     return (
@@ -18,12 +16,6 @@ export default function App() {
                         <li>
                             <Link to="/create">Create</Link>
                         </li>
-                        <li>
-                            <Link to="/update">Update</Link>
-                        </li>
-                        <li>
-                            <Link to="/delete">Delete</Link>
-                        </li>
                     </ul>
                 </nav>
 
@@ -35,12 +27,6 @@ export default function App() {
                     </Route>
                     <Route path="/">
                         <Read />
-                    </Route>
-                    <Route path="/Update">
-                        <Update />
-                    </Route>
-                    <Route path="/Delete">
-                        <Delete />
                     </Route>
                 </Switch>
             </div>

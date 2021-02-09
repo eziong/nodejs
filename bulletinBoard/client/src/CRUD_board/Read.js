@@ -11,7 +11,7 @@ export default function ManiPage() {
             .get("http://localhost:3000/post/read")
             .then((response) => {
                 response.data.docs.map((post) => {
-                    getPosts = [...getPosts, post];
+                    return (getPosts = [...getPosts, post]);
                 });
             })
             .then(() => {

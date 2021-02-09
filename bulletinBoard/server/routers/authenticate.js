@@ -15,7 +15,10 @@ router.post("/login", (req, res) => {
             if (success)
                 return res.json({
                     loginSuccess: true,
-                    user_info: user,
+                    user_info: {
+                        user_email: user.user_email,
+                        user_nickname: user.user_nickname,
+                    },
                 });
             else
                 return res.json({
